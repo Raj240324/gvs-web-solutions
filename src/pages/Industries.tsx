@@ -201,7 +201,7 @@ const Industries = () => {
   );
 
   return (
-    <main className="pt-[84px] lg:pt-[120px] overflow-hidden bg-gray-50">
+    <main className="pt-[84px] lg:pt-[129px] overflow-hidden bg-gray-50">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-indigo-700 via-purple-700 to-teal-600 text-white py-16 sm:py-20 md:py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+PHBhdGggZD0iTTYwIDMwSDMwTTYwIDMwVjMwTTYwIDMwSDMwTTYwIDMwVjMwIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')] opacity-20"></div>

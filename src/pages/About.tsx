@@ -192,7 +192,7 @@ const About = () => {
   return (
     <div className="min-h-screen">
       {/* Spacer to push content below fixed header */}
-      <div className="h-[84px] lg:h-[120px]"></div>
+      <div className="h-[84px] lg:h-[129px]"></div>
       <main className="overflow-hidden">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-indigo-800 via-teal-600 to-fuchsia-700 text-white py-20 md:py-28 relative">

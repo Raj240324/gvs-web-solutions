@@ -66,7 +66,6 @@ const ContactFormModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      // Simulate form submission (replace with actual API call)
       console.log("Form submitted:", formData);
       alert("Inquiry submitted successfully!");
       setFormData({ name: "", email: "", subject: "", message: "" });
@@ -190,6 +189,7 @@ const Hero: React.FC = () => {
   const [currentContent, setCurrentContent] = useState<number>(0);
   const [expandedButton, setExpandedButton] = useState<string | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [isHeroVisible, setIsHeroVisible] = useState<boolean>(true);
 
   const contents: Content[] = [
     {
@@ -226,10 +226,24 @@ const Hero: React.FC = () => {
     const loadingTimeout = setTimeout(() => setIsLoaded(true), 300);
     const interval = setInterval(() => {
       setCurrentContent((prev) => (prev + 1) % contents.length);
-    }, 8000); // Change content every 8 seconds
+    }, 8000);
+
+    // Scroll event listener to hide buttons when not in Hero section
+    const handleScroll = () => {
+      const heroSection = document.getElementById("hero-section");
+      if (heroSection) {
+        const rect = heroSection.getBoundingClientRect();
+        setIsHeroVisible(rect.top >= 0 && rect.bottom <= window.innerHeight);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+
     return () => {
       clearTimeout(loadingTimeout);
       clearInterval(interval);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -286,7 +300,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-blue-900 to-teal-900 pt-24 lg:pt-32 overflow-hidden">
+    <section id="hero-section" className="relative min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-blue-900 to-teal-900 pt-24 lg:pt-32 overflow-hidden">
       {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -346,9 +360,6 @@ const Hero: React.FC = () => {
               >
                 {current.description}
               </motion.p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                {/* Empty div to maintain layout, buttons moved to fixed position */}
-              </div>
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -362,8 +373,12 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Fixed button stack in left-middle corner */}
-      <div className="fixed top-1/2 left-4 transform -translate-y-1/2 flex flex-col gap-3 z-50">
+      {/* Fixed button stack in right-middle corner, visible only in Hero section */}
+      <div
+        className={`fixed top-1/2 right-4 transform -translate-y-1/2 flex flex-col gap-3 z-50 transition-opacity duration-300 ${
+          isHeroVisible ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      >
         {buttons.map((button, index) => {
           const isMiddleButton = index === 1; // Catalogue button
 
@@ -374,19 +389,19 @@ const Hero: React.FC = () => {
                 aria-label={button.text}
                 className={`relative inline-flex items-center justify-center w-12 h-12 rounded-xl text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[${button.color}]/50 shadow-[0_0_12px_rgba(255,255,255,0.3)] ${
                   isMiddleButton
-                    ? 'bg-gradient-to-br from-orange-500 to-red-600 shadow-[0_0_18px_rgba(242,142,56,0.7)]'
+                    ? "bg-gradient-to-br from-orange-500 to-red-600 shadow-[0_0_18px_rgba(242,142,56,0.7)]"
                     : `bg-gradient-to-br from-[${button.color}] to-[${button.color}]/70`
                 }`}
                 animate={{ scale: isMiddleButton ? [1, 1.06, 1] : [1, 1.04, 1] }}
-                transition={{ repeat: Infinity, duration: isMiddleButton ? 1.8 : 2.2, ease: 'easeInOut' }}
+                transition={{ repeat: Infinity, duration: isMiddleButton ? 1.8 : 2.2, ease: "easeInOut" }}
                 whileHover={{ scale: 1.2, boxShadow: `0 0 25px rgba(255,255,255,0.5)` }}
                 whileTap={{ scale: 0.85 }}
               >
                 <span className="text-xl">
-                  {button.id === 'inquiry' && <Mail size={24} />}
-                  {button.id === 'catalogue' && <BookOpen size={24} />}
-                  {button.id === 'call' && <Phone size={24} />}
-                  {button.id === 'whatsapp' && (
+                  {button.id === "inquiry" && <Mail size={24} />}
+                  {button.id === "catalogue" && <BookOpen size={24} />}
+                  {button.id === "call" && <Phone size={24} />}
+                  {button.id === "whatsapp" && (
                     <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.134.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.074-.149-.669-.719-.911-.99-.24-.272-.482-.558-.707-.558-.224 0-.423-.024-.602-.074-.178-.05-.999-.233-1.522.335-.522.558-.923 1.692-.99 2.785-.074 1.092.452 3.385.916 4.61.465 1.224 3.234 5.158 8.007 7.233 1.158.5 2.066.674 2.774.558.707-.117 2.19-.867 2.498-1.71.307-.842.307-1.567.223-1.716-.086-.149-.322-.223-.52-.347zm-5.648 7.617A11.93 11.93 0 01.96 12.075 A11.93 11.93 0 0111.824 2.15c3.198 0 6.22 1.245 8.485 3.505a11.93 11.93 0 012.74 8.42 11.93 11.93 0 01-11.777 11.524zm0-21.998C5.296 0 0 5.296 0 11.824c0 2.132.582 4.243 1.683 6.095L0 24l6.308-1.657a11.93 11.93 0 005.516 1.346c6.528 0 11.824-5.296 11.824-11.824S18.352 0 11.824 0z" />
                     </svg>
@@ -395,9 +410,9 @@ const Hero: React.FC = () => {
                 {isMiddleButton && (
                   <motion.span
                     className="absolute inset-0 rounded-xl border-2 border-orange-400 opacity-60"
-                    style={{ pointerEvents: 'none' }}
+                    style={{ pointerEvents: "none" }}
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 3.5, repeat: Infinity, ease: 'linear' }}
+                    transition={{ duration: 3.5, repeat: Infinity, ease: "linear" }}
                   />
                 )}
               </motion.button>
@@ -408,8 +423,8 @@ const Hero: React.FC = () => {
                     initial="hidden"
                     animate="visible"
                     exit="exit"
-                    className="absolute left-14 bg-gradient-to-r from-teal-500 to-blue-600 bg-opacity-90 backdrop-blur-md text-white p-4 rounded-xl shadow-lg border border-white/20"
-                    style={{ minWidth: '16rem', maxWidth: '20rem', minHeight: '8rem' }}
+                    className="absolute right-14 top-1/2 transform -translate-y-1/2 bg-gradient-to-r from-teal-500 to-blue-600 bg-opacity-90 backdrop-blur-md text-white p-4 rounded-xl shadow-lg border border-white/20"
+                    style={{ minWidth: "16rem", maxWidth: "20rem", minHeight: "8rem" }}
                   >
                     <motion.div className="flex justify-between items-center mb-2">
                       <motion.h3
@@ -432,10 +447,10 @@ const Hero: React.FC = () => {
                       variants={contentVariants}
                       className="text-sm mb-4 font-poppins"
                     >
-                      {button.text === 'Send Inquiry' && 'Fill out the form to get in touch.'}
-                      {button.text === 'Catalogue' && 'Download our latest catalogue.'}
-                      {button.text === 'Call' && 'Contact us directly at +91 9884001597.'}
-                      {button.text === 'WhatsApp' && 'Chat with us instantly.'}
+                      {button.text === "Send Inquiry" && "Fill out the form to get in touch."}
+                      {button.text === "Catalogue" && "Download our latest catalogue."}
+                      {button.text === "Call" && "Contact us directly at +91 9884001597."}
+                      {button.text === "WhatsApp" && "Chat with us instantly."}
                     </motion.p>
                     <motion.a
                       variants={contentVariants}
@@ -444,7 +459,7 @@ const Hero: React.FC = () => {
                         e.preventDefault();
                         button.action();
                       }}
-                      className="inline-flex items-center px-3 py-1 bg-white text-teal-600 font-semibold rounded-md hover:bg-gray-100 transition-colors duration-300"
+                      className="inline-flex items-center px-3 py-1 bg-white text-teal-600 font-semibold rounded/Alink rounded-md hover:bg-gray-100 transition-colors duration-300"
                     >
                       Proceed <ArrowRight className="ml-1 h-4 w-4" />
                     </motion.a>
