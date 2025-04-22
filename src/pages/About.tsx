@@ -4,13 +4,6 @@ import { Compare } from '@/components/ui/compare';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { Timeline } from '@/components/ui/timeline';
 import { motion } from 'framer-motion';
-import mission from '../../public/assets/mission.jpg';
-import vision from '../../public/assets/Vision-New.png';
-import power_plants from '../assets/power_plants.jpg';
-import renewable_energy from '../assets/renewable_energy.jpg';
-import automation from '../../public/assets/automation.jpg';
-import founded from '../../public/assets/founded-about.jpg';
-import clients from '../../public/assets/clients-about.jpg';
 
 const About = () => {
   useEffect(() => {
@@ -46,7 +39,7 @@ const About = () => {
         <div>
           <h3 className="text-xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600">Founded GVS Controls</h3>
           <p className="text-gray-600 mt-2">Established as a proprietary company with a vision for innovative, cost-effective engineering solutions.</p>
-          <img src={founded} alt="Founded GVS Controls" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
+          <img src="/assets/founded-about.jpg" alt="Founded GVS Controls" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
         </div>
       ),
     },
@@ -56,7 +49,7 @@ const About = () => {
         <div>
           <h3 className="text-xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600">Early Projects</h3>
           <p className="text-gray-600 mt-2">Collaborated with Shriram EPC Ltd., Black Stone Group, and L&T on power plants and material handling systems.</p>
-          <img src={power_plants} alt="Early Projects" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
+          <img src="/assets/power_plants.jpg" alt="Early Projects" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
         </div>
       ),
     },
@@ -66,7 +59,7 @@ const About = () => {
         <div>
           <h3 className="text-xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600">Expansion</h3>
           <p className="text-gray-600 mt-2">Executed projects for SAIL, TISCO, and RINL in renewable energy and steel sectors.</p>
-          <img src={renewable_energy} alt="Expansion" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
+          <img src="/assets/renewable_energy.jpg" alt="Expansion" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
         </div>
       ),
     },
@@ -76,7 +69,7 @@ const About = () => {
         <div>
           <h3 className="text-xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600">Automation Leadership</h3>
           <p className="text-gray-600 mt-2">Introduced advanced PLC and VFD control systems for process plants.</p>
-          <img src={automation} alt="Automation Leadership" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
+          <img src="/assets/automation.jpg" alt="Automation Leadership" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
         </div>
       ),
     },
@@ -86,7 +79,7 @@ const About = () => {
         <div>
           <h3 className="text-xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600">Global Reach</h3>
           <p className="text-gray-600 mt-2">Partnered with international clients like Titan Cement (Egypt) and Republic Cement (Philippines).</p>
-          <img src={clients} alt="Global Reach" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
+          <img src="/assets/clients-about.jpg" alt="Global Reach" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
         </div>
       ),
     },
@@ -207,7 +200,7 @@ const About = () => {
                 About GVS Controls
               </h1>
               <p className="text-lg text-white/90 leading-relaxed drop-shadow-sm">
-                Established in 2017, we bring over three decades of expertise to innovative electrical engineering solutions.
+                Established in 2017, we bring over three decades of expertise to innovative electrical and automation solutions for industries like power plants, steel, and cement.
               </p>
             </div>
           </div>
@@ -246,8 +239,8 @@ const About = () => {
                 <div className="relative w-full max-w-[500px]">
                   <div className="border rounded-3xl bg-neutral-100 border-neutral-300 shadow-xl overflow-hidden ring-2 ring-teal-300/20">
                     <Compare
-                      firstImage={mission}
-                      secondImage={vision}
+                      firstImage="/assets/mission.jpg"
+                      secondImage="/assets/Vision-New.png"
                       firstImageClassName="object-cover w-full h-full"
                       secondImageClassname="object-cover w-full h-full"
                       className="w-full h-[250px] md:h-[400px] rounded-2xl"

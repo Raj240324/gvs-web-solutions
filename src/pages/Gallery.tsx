@@ -1,16 +1,6 @@
 import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
-import { FocusCards, Card as CardType } from "@/components/ui/focus-cards";
-import gal_1 from '../../public/assets/photo-gallery/gal-1.png';
-import gal_2 from '../../public/assets/photo-gallery/gal-2.png';
-import gal_3 from '../../public/assets/photo-gallery/gal-3.png';
-import gal_4 from '../../public/assets/photo-gallery/gal-4.png';
-import gal_5 from '../../public/assets/photo-gallery/gal-5.png';
-import gal_6 from '../../public/assets/photo-gallery/gal-6.png';
-import gal_7 from '../../public/assets/photo-gallery/gal-7.png';
-import gal_8 from '../../public/assets/photo-gallery/gal-8.png';
-import gal_9 from '../../public/assets/photo-gallery/gal-9.png';
-import gal_10 from '../../public/assets/photo-gallery/gal-10.png';
+import { FocusCards, Card as CardType } from '@/components/ui/focus-cards';
 
 // Define gallery image type
 interface GalleryImage {
@@ -28,16 +18,16 @@ const Gallery = () => {
   const [headerHeight, setHeaderHeight] = useState(0);
 
   const galleryImages: GalleryImage[] = [
-    { id: '1', src: gal_1, alt: 'Control Panel Manufacturing', category: 'Manufacturing' },
-    { id: '2', src: gal_2, alt: 'Electrical Installation at Power Plant', category: 'Installation' },
-    { id: '3', src: gal_3, alt: 'Automation System Design', category: 'Automation' },
-    { id: '4', src: gal_4, alt: 'Switchgear Panel Testing', category: 'Testing' },
-    { id: '5', src: gal_5, alt: 'Electrical Panel Wiring', category: 'Manufacturing' },
-    { id: '6', src: gal_6, alt: 'Site Installation Work', category: 'Installation' },
-    { id: '7', src: gal_7, alt: 'Control System Programming', category: 'Automation' },
-    { id: '8', src: gal_8, alt: 'Quality Inspection Process', category: 'Testing' },
-    { id: '9', src: gal_9, alt: 'Motor Control Center', category: 'Manufacturing' },
-    { id: '10', src: gal_10, alt: 'Panel Installation at Client Site', category: 'Installation' },
+    { id: '1', src: '/assets/photo-gallery/gal-1.png', alt: 'Control Panel Manufacturing', category: 'Manufacturing' },
+    { id: '2', src: '/assets/photo-gallery/gal-2.png', alt: 'Electrical Installation at Power Plant', category: 'Installation' },
+    { id: '3', src: '/assets/photo-gallery/gal-3.png', alt: 'Automation System Design', category: 'Automation' },
+    { id: '4', src: '/assets/photo-gallery/gal-4.png', alt: 'Switchgear Panel Testing', category: 'Testing' },
+    { id: '5', src: '/assets/photo-gallery/gal-5.png', alt: 'Electrical Panel Wiring', category: 'Manufacturing' },
+    { id: '6', src: '/assets/photo-gallery/gal-6.png', alt: 'Site Installation Work', category: 'Installation' },
+    { id: '7', src: '/assets/photo-gallery/gal-7.png', alt: 'Control System Programming', category: 'Automation' },
+    { id: '8', src: '/assets/photo-gallery/gal-8.png', alt: 'Quality Inspection Process', category: 'Testing' },
+    { id: '9', src: '/assets/photo-gallery/gal-9.png', alt: 'Motor Control Center', category: 'Manufacturing' },
+    { id: '10', src: '/assets/photo-gallery/gal-10.png', alt: 'Panel Installation at Client Site', category: 'Installation' },
   ];
 
   const categories = ['All', ...new Set(galleryImages.map(image => image.category))];

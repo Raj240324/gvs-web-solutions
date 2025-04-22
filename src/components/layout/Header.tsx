@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button";
 import ContactModal from "@/components/ContactModal";
 import { useContactModal } from "@/hooks/use-contact-modal";
 import { cn } from "@/lib/utils";
-import logo from "../../../public/assets/GVS-logo.png";
+import logo from '../../../src/assets/GVS-logo.png';
 
 // Utility function to debounce scroll events
 const debounce = (func, wait) => {

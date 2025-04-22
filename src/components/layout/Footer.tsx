@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
-import logo from '../../../public/assets/GVS-logo.png';
+import logo from '../../../src/assets/GVS-logo.png';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 

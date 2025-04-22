@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
 import { CanvasRevealEffect } from '@/components/ui/canvas-reveal-effect';
 import { 
   Zap, // Power
@@ -13,14 +12,6 @@ import {
   Box, // Material Handling
   Droplet // Water
 } from 'lucide-react';
-import power_plants from '../../src/assets/power_plants.jpg';
-import renewable_energy from '../../src/assets/renewable_energy.jpg';
-import steel_plants from '../../src/assets/steel_plants.jpg';
-import water_treatment_plants from '../../src/assets/water_treatment_plants.jpg';
-import chemical_plants from '../../src/assets/chemical_plants.jpg';
-import bulk_material_handling from '../../src/assets/bulk_material_handling.jpg';
-import automobile_industries from '../../src/assets/automobile_industries.jpg';
-import cooling_towers from '../../src/assets/cooling_towers.jpg';
 
 const Industries = () => {
   useEffect(() => {
@@ -53,7 +44,7 @@ const Industries = () => {
       description: 'Optimized electrical and automation systems for reliable power generation.',
       longDescription: 'We deliver cutting-edge solutions for power plants, ensuring seamless operations across thermal, biomass, solar, and hydroelectric facilities. Our expertise includes turbine control, grid synchronization, and energy management systems tailored to maximize efficiency and uptime.',
       icon: <Zap size={50} strokeWidth={2} className="text-amber-600" />,
-      image: power_plants,
+      image: '/assets/power_plants.jpg',
       examples: ['Thermal Power Stations', 'Biomass Energy Plants', 'Solar Farms', 'Hydroelectric Dams'],
       stats: { projects: '120+', uptime: '99.8%' },
       color: [[255, 165, 0]], // Orange
@@ -64,8 +55,8 @@ const Industries = () => {
       description: 'Robust automation for steel production processes.',
       longDescription: 'Our control systems enhance steel plant operations, from coke ovens to rolling mills. We provide rugged PLC-based solutions, real-time monitoring, and safety integrations to ensure precision, durability, and compliance in high-demand environments.',
       icon: <Hammer size={50} strokeWidth={2} className="text-gray-700" />,
-      image: steel_plants,
-      examples: ['Coke Oven Automation', 'Steel Melting Shops (SMS)', 'Rolling Mills', 'Continuous Casting'],
+      image: '/assets/steel_plants.jpg',
+      examples: ['Coke Oven Automation', 'Blast Furnace Controls', 'Rolling Mills', 'Continuous Casting'],
       stats: { systemsInstalled: '80+', safetyRating: '100%' },
       color: [[169, 169, 169]], // Gray
     },
@@ -73,10 +64,10 @@ const Industries = () => {
       id: 'chemical',
       name: 'Chemical & Process Plants',
       description: 'Safe, efficient automation for complex chemical processes.',
-      longDescription: 'We specialize in automation for chemical manufacturing, pharmaceuticals, and Petrochemical plants. Our solutions include process control, hazardous area instrumentation, and compliance with stringent safety standards, ensuring operational excellence.',
+      longDescription: 'We specialize in automation for chemical manufacturing, pharmaceuticals, and petrochemical plants. Our solutions include process control, hazardous area instrumentation, and compliance with stringent safety standards, ensuring operational excellence.',
       icon: <FlaskConical size={50} strokeWidth={2} className="text-emerald-600" />,
-      image: chemical_plants,
-      examples: ['Chemical Manufacturing', 'Pharmaceutical Production', 'Petrochemical Refining', 'Process Optimization'],
+      image: '/assets/chemical_plants.jpg',
+      examples: ['Chemical Manufacturing', 'Pharmaceutical Production', 'Petrochemical Refining', 'Fertilizer Plants'],
       stats: { plantsSupported: '50+', compliance: '99%' },
       color: [[0, 128, 0]], // Green
     },
@@ -86,7 +77,7 @@ const Industries = () => {
       description: 'Advanced monitoring for cooling tower efficiency.',
       longDescription: 'Our systems optimize concrete and FRP cooling towers used in HVAC and industrial applications. We provide real-time monitoring, vibration analysis, and energy-efficient controls to extend equipment life and reduce operational costs.',
       icon: <Fan size={50} strokeWidth={2} className="text-cyan-500" />,
-      image: cooling_towers,
+      image: '/assets/cooling_towers.jpg',
       examples: ['Concrete Cooling Towers', 'FRP Cooling Systems', 'HVAC Integration', 'Industrial Cooling'],
       stats: { towersManaged: '90+', efficiencyGain: '30%' },
       color: [[135, 206, 235]], // Sky Blue
@@ -97,7 +88,7 @@ const Industries = () => {
       description: 'Automation driving automotive manufacturing excellence.',
       longDescription: 'We enhance automobile production with automation for assembly lines, testing, and component manufacturing. Our solutions reduce cycle times, improve quality control, and integrate seamlessly with Industry 4.0 technologies.',
       icon: <Truck size={50} strokeWidth={2} className="text-rose-600" />,
-      image: automobile_industries,
+      image: '/assets/automobile_industries.jpg',
       examples: ['Production Lines', 'Assembly Automation', 'Quality Testing', 'Component Fabrication'],
       stats: { linesAutomated: '60+', productivityBoost: '35%' },
       color: [[255, 0, 0]], // Red
@@ -108,7 +99,7 @@ const Industries = () => {
       description: 'Sustainable solutions for green energy production.',
       longDescription: 'We support renewable energy projects with solutions for biomass gasification, solar tracking, wind turbine control, and hybrid systems. Our focus is on sustainability, efficiency, and integrating renewable sources into existing grids.',
       icon: <Sun size={50} strokeWidth={2} className="text-lime-600" />,
-      image: renewable_energy,
+      image: '/assets/renewable_energy.jpg',
       examples: ['Biomass Gasification', 'Solar Energy Systems', 'Wind Turbines', 'Hybrid Power Plants'],
       stats: { projects: '70+', carbonSaved: '20K Tons' },
       color: [[34, 139, 34]], // Forest Green
@@ -119,7 +110,7 @@ const Industries = () => {
       description: 'Efficient systems for material movement and storage.',
       longDescription: 'Our control systems streamline bulk material handling for conveyors, stackers, and storage facilities. We optimize throughput, reduce downtime, and enhance safety for industries like mining, cement, and logistics.',
       icon: <Box size={50} strokeWidth={2} className="text-amber-800" />,
-      image: bulk_material_handling,
+      image: '/assets/bulk_material_handling.jpg',
       examples: ['Conveyor Systems', 'Stacker-Reclaimers', 'Loading/Unloading', 'Storage Management'],
       stats: { systemsDeployed: '100+', throughputIncrease: '25%' },
       color: [[139, 69, 19]], // Brown
@@ -130,7 +121,7 @@ const Industries = () => {
       description: 'Automation ensuring clean and compliant water systems.',
       longDescription: 'We provide automation for sewage treatment (STP), effluent treatment (ETP), and water treatment plants (WTP), including desalination. Our systems ensure regulatory compliance, efficient water management, and reliable operation.',
       icon: <Droplet size={50} strokeWidth={2} className="text-blue-600" />,
-      image: water_treatment_plants,
+      image: '/assets/water_treatment_plants.jpg',
       examples: ['Sewage Treatment (STP)', 'Effluent Treatment (ETP)', 'Water Treatment (WTP)', 'Desalination Plants'],
       stats: { plantsAutomated: '85+', waterProcessed: '500M Liters' },
       color: [[0, 191, 255]], // Deep Sky Blue
@@ -138,7 +129,7 @@ const Industries = () => {
   ];
 
   const Card = ({ industry }) => {
-    const [hovered, setHovered] = React.useState(false);
+    const [hovered, setHovered] = useState(false);
     return (
       <a
         href={`#${industry.id}`}

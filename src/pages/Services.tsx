@@ -9,12 +9,6 @@ import {
   ArrowRight 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import consultant_engineering from '../../public/assets/consultant-engineering.jpg';
-import panel_manufacturing from '../../public/assets/panel-manufacturing.jpg';
-import installation_commission from '../../public/assets/installation-commission.jpg';
-import automation from '../../public/assets/automation.jpg';
-import renovation_revamping from '../../public/assets/renovation-revamping.jpg';
-import support_supply from '../../public/assets/support-supply.jpg';
 
 const Services = () => {
   useEffect(() => {
@@ -43,66 +37,66 @@ const Services = () => {
   const services = [
     {
       id: 'consultancy-engineering',
-      title: 'Consultancy & Engineering',
+      title: 'Consultancy & Project Management',
       description: 'Expert project management, system design, and engineering for turnkey projects, backed by 30+ years of promoter experience.',
       longDescription: 'With over three decades of promoter experience, we deliver end-to-end consultancy services, from feasibility studies to detailed system design. Our team excels in optimizing electrical infrastructure, ensuring compliance with global standards, and integrating sustainable practices into every project.',
       icon: <Settings size={28} className="text-teal-500" />,
       features: [
-        'Comprehensive Project Management Consultancy',
-        'Advanced Basic & Detail Engineering',
-        'Control System Design (Relay/PLC/SCADA)',
-        'Precision Equipment Sizing & Selection'
+        'Turnkey Project Management Consultancy',
+        'System/Field Studies and Optimized Design',
+        'Selection and Sizing of HT/LT Electrical Equipment',
+        'Procurement Assistance and Equipment Inspection'
       ],
       stats: { projects: '150+', years: '30+' },
-      image: consultant_engineering,
+      image: '/assets/consultant-engineering.jpg',
       ctaLink: '#consultancy-engineering'
     },
     {
       id: 'panel-manufacturing',
-      title: 'Panel Manufacturing',
+      title: 'Manufacturing & Supply',
       description: 'High-quality electrical control panels manufactured to IE standards for diverse applications.',
       longDescription: 'Our state-of-the-art manufacturing facility produces a wide range of electrical control panels, including medium-voltage switchgear and custom PLC solutions. Each panel undergoes rigorous testing to ensure durability, safety, and seamless integration into your operations.',
       icon: <Cpu size={28} className="text-teal-500" />,
       features: [
-        'Medium Voltage (MV) Panels',
+        'Medium Voltage Panels (Single/Double Bus System)',
         'Power & Motor Control Centers (PCC/MCC)',
-        'Variable Frequency Drive (VFD) & PLC Panels',
-        'Tailored Custom-Built Solutions'
+        'EB & DG Synchronizing Panels, Auto Transfer Switch Panels',
+        'APFC, AMF, Relay Logic & PLC Control Panels'
       ],
       stats: { panelsBuilt: '500+', industriesServed: '10+' },
-      image: panel_manufacturing,
+      image: '/assets/panel-manufacturing.jpg',
       ctaLink: '#panel-manufacturing'
     },
     {
       id: 'installation-commissioning',
-      title: 'Installation & Commissioning',
+      title: 'Installation, Testing & Commissioning',
       description: 'Flawless execution of electrical system installations with minimal disruption and maximum efficiency.',
       longDescription: 'Our expert technicians handle everything from bus duct installations to full system commissioning. We prioritize safety, precision, and speed, ensuring your systems are operational with zero downtime and fully optimized for performance.',
       icon: <Wrench size={28} className="text-teal-500" />,
       features: [
-        'Bus Ducts & Panel Installations',
-        'Seamless System Integration',
-        'Comprehensive Testing & Troubleshooting',
-        'On-Site Commissioning Services'
+        'Erection, Testing, and Troubleshooting of Electrical Systems',
+        'PLC and VFD Control Panels Commissioning',
+        'Integration of Electrical Systems with Control Logic',
+        'Revamping of Old Electrical Systems'
       ],
       stats: { sitesCommissioned: '200+', downtimeReduced: '98%' },
-      image: installation_commission,
+      image: '/assets/installation-commission.jpg',
       ctaLink: '#installation-commissioning'
     },
     {
       id: 'automation-solutions',
-      title: 'Automation Solutions',
+      title: 'Automation & Instrumentation',
       description: 'Next-generation automation systems designed to streamline processes and enhance productivity.',
       longDescription: 'We provide turnkey automation solutions, integrating PLCs, SCADA systems, and advanced instrumentation. From process optimization to real-time monitoring, our systems are pioneered to reduce costs, improve safety, and drive operational excellence.',
       icon: <HardDrive size={28} className="text-teal-500" />,
       features: [
-        'PLC-Based Process Control Systems',
-        'Advanced Instrumentation Products',
-        'Cost-Optimized Automation Designs',
-        '24/7 On-Site Technical Support'
+        'Process Automation Solutions for Industrial Applications',
+        'Supply of Field Instruments for Various Industries',
+        'Revamping and Integration of Control Panels',
+        'Real-Time Monitoring and Control Systems'
       ],
       stats: { systemsAutomated: '100+', efficiencyGain: '40%' },
-      image: automation,
+      image: '/assets/automation.jpg',
       ctaLink: '#automation-solutions'
     },
     {
@@ -112,13 +106,13 @@ const Services = () => {
       longDescription: 'Our renovation services breathe new life into aging electrical infrastructure. We assess, retrofit, and upgrade systems to enhance reliability, comply with regulations, and reduce energy consumption, all while minimizing operational interruptions.',
       icon: <Clock size={28} className="text-teal-500" />,
       features: [
-        'Detailed System Health Assessments',
-        'Custom Retrofit & Upgrade Solutions',
-        'Enhanced Safety Protocols',
-        'Energy Efficiency Improvements'
+        'Site Surveys & Assessments for Renovation Solutions',
+        'Modernization of Electrical Systems',
+        'Energy Efficiency Upgrades',
+        'Compliance with Safety Standards'
       ],
       stats: { systemsRevamped: '80+', energySaved: '25%' },
-      image: renovation_revamping,
+      image: '/assets/renovation-revamping.jpg',
       ctaLink: '#renovation-revamping'
     },
     {
@@ -134,7 +128,7 @@ const Services = () => {
         'Expert On-Demand Assistance'
       ],
       stats: { clientsSupported: '50+', uptimeGuaranteed: '99.9%' },
-      image: support_supply,
+      image: '/assets/support-supply.jpg',
       ctaLink: '#support-supply'
     }
   ];
@@ -190,6 +184,7 @@ const Services = () => {
                     src={card.image}
                     alt={card.title}
                     className="h-32 w-32 sm:h-40 sm:w-40 rounded-lg object-cover object-top border-2 border-teal-400 dark:border-teal-600 transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
                   />
                 </div>
                 <div className="mt-4 text-center flex-1 flex flex-col justify-between w-full">
