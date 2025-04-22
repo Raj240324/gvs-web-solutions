@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import { FocusCards, Card as CardType } from "@/components/ui/focus-cards";
-import gal_1 from '../../src/assets/photo-gallery/gal-1.png';
-import gal_2 from '../../src/assets/photo-gallery/gal-2.png';
-import gal_3 from '../../src/assets/photo-gallery/gal-3.png';
-import gal_4 from '../../src/assets/photo-gallery/gal-4.png';
-import gal_5 from '../../src/assets/photo-gallery/gal-5.png';
-import gal_6 from '../../src/assets/photo-gallery/gal-6.png';
-import gal_7 from '../../src/assets/photo-gallery/gal-7.png';
-import gal_8 from '../../src/assets/photo-gallery/gal-8.png';
-import gal_9 from '../../src/assets/photo-gallery/gal-9.png';
-import gal_10 from '../../src/assets/photo-gallery/gal-10.png';
+import gal_1 from '../../public/assets/photo-gallery/gal-1.png';
+import gal_2 from '../../public/assets/photo-gallery/gal-2.png';
+import gal_3 from '../../public/assets/photo-gallery/gal-3.png';
+import gal_4 from '../../public/assets/photo-gallery/gal-4.png';
+import gal_5 from '../../public/assets/photo-gallery/gal-5.png';
+import gal_6 from '../../public/assets/photo-gallery/gal-6.png';
+import gal_7 from '../../public/assets/photo-gallery/gal-7.png';
+import gal_8 from '../../public/assets/photo-gallery/gal-8.png';
+import gal_9 from '../../public/assets/photo-gallery/gal-9.png';
+import gal_10 from '../../public/assets/photo-gallery/gal-10.png';
 
 // Define gallery image type
 interface GalleryImage {

@@ -4,13 +4,13 @@ import { Compare } from '@/components/ui/compare';
 import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { Timeline } from '@/components/ui/timeline';
 import { motion } from 'framer-motion';
-import mission from '../assets/mission.jpg';
-import vision from '../assets/Vision-New.png';
+import mission from '../../public/assets/mission.jpg';
+import vision from '../../public/assets/Vision-New.png';
 import power_plants from '../assets/power_plants.jpg';
 import renewable_energy from '../assets/renewable_energy.jpg';
-import automation from '../assets/automation.jpg';
-import founded from '../assets/founded-about.jpg';
-import clients from '../assets/clients-about.jpg';
+import automation from '../../public/assets/automation.jpg';
+import founded from '../../public/assets/founded-about.jpg';
+import clients from '../../public/assets/clients-about.jpg';
 
 const About = () => {
   useEffect(() => {

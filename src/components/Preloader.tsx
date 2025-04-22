@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import logo from '../../src/assets/GVS-logo.png';
+import logo from '../../public/assets/GVS-logo.png';
 
 const Preloader = () => {
   const [loaded, setLoaded] = useState(false);

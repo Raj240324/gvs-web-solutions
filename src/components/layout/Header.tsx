@@ -6,7 +6,7 @@ import Button from "@/components/ui/Button";
 import ContactModal from "@/components/ContactModal";
 import { useContactModal } from "@/hooks/use-contact-modal";
 import { cn } from "@/lib/utils";
-import logo from "../../assets/GVS-logo.png";
+import logo from "../../../public/assets/GVS-logo.png";
 
 // Utility function to debounce scroll events
 const debounce = (func, wait) => {
@@ -53,7 +53,7 @@ const TopContactBar = () => (
           className="text-[#4a0e78] dark:text-white/90 hover:text-[#ff6f61] transition-transform duration-300 hover:scale-110"
           aria-label="Visit our X profile"
         >
-          <XIcon size={20} />
+          <XIcon size={20} className={undefined} />
         </a>
         <a
           href="https://instagram.com"
@@ -374,7 +374,7 @@ const Header = () => {
                           className="text-[#4a0e78] hover:text-[#ff6f61] transition-colors"
                           aria-label="Visit our X profile"
                         >
-                          <XIcon size={20} />
+                          <XIcon size={20} className={undefined} />
                         </a>
                         <a
                           href="https://instagram.com"

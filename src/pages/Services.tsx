@@ -9,12 +9,12 @@ import {
   ArrowRight 
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import consultant_engineering from '../../src/assets/consultant-engineering.jpg';
-import panel_manufacturing from '../../src/assets/panel-manufacturing.jpg';
-import installation_commission from '../../src/assets/installation-commission.jpg';
-import automation from '../../src/assets/automation.jpg';
-import renovation_revamping from '../../src/assets/renovation-revamping.jpg';
-import support_supply from '../../src/assets/support-supply.jpg';
+import consultant_engineering from '../../public/assets/consultant-engineering.jpg';
+import panel_manufacturing from '../../public/assets/panel-manufacturing.jpg';
+import installation_commission from '../../public/assets/installation-commission.jpg';
+import automation from '../../public/assets/automation.jpg';
+import renovation_revamping from '../../public/assets/renovation-revamping.jpg';
+import support_supply from '../../public/assets/support-supply.jpg';
 
 const Services = () => {
   useEffect(() => {
