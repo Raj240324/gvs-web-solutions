@@ -6,7 +6,6 @@ import Button from "@/components/ui/Button";
 import ContactModal from "@/components/ContactModal";
 import { useContactModal } from "@/hooks/use-contact-modal";
 import { cn } from "@/lib/utils";
-import logo from '../../../src/assets/GVS-logo.png';
 
 // Utility function to debounce scroll events
 const debounce = (func, wait) => {
@@ -206,7 +205,7 @@ const Header = () => {
                 onClick={handleNavClick}
               >
                 <img
-                  src={logo}
+                  src="/assets/GVS-logo.png" // Served from public/assets/GVS-logo.png
                   alt="GVS Controls Logo"
                   className="h-12 w-auto max-w-[150px] transition-transform hover:scale-105"
                 />
@@ -300,7 +299,11 @@ const Header = () => {
               <div className="h-full flex flex-col overflow-hidden">
                 <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-[#b2ff8b]/20 via-[#4ecdc4]/20 to-[#2a9d8f]/20">
                   <NavLink to="/" className="flex items-center" onClick={handleNavClick}>
-                    <img src={logo} alt="GVS Controls Logo" className="h-12 w-auto max-w-[150px]" />
+                    <img
+                      src="/assets/GVS-logo.png" // Served from public/assets/GVS-logo.png
+                      alt="GVS Controls Logo"
+                      className="h-12 w-auto max-w-[150px]"
+                    />
                   </NavLink>
                   <div className="flex-1 text-center">
                     <span className="block text-[#4a0e78] font-montserrat font-bold text-lg">

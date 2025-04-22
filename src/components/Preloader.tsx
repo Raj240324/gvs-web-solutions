@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import logo from '../../src/assets/GVS-logo.png';
 
 const Preloader = () => {
   const [loaded, setLoaded] = useState(false);
@@ -25,7 +24,7 @@ const Preloader = () => {
     >
       <div className="text-center">
         <img
-          src={logo}
+          src="/assets/GVS-logo.png" // Served from public/assets/GVS-logo.png
           alt="GVS Controls Logo"
           className="w-32 mb-4 animate-pulse"
         />

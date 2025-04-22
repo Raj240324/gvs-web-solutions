@@ -1,6 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
-import logo from '../../../src/assets/GVS-logo.png';
+// Update the logo import to use the public folder path
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 
@@ -60,7 +60,8 @@ const Footer = () => {
               whileHover={{ scale: 1.02 }}
             >
               <div className="flex items-center mb-4">
-                <img src={logo} alt="GVS Controls Logo" className="h-10 w-auto" />
+                {/* Update the src to use the public folder path */}
+                <img src="/assets/GVS-logo.png" alt="GVS Controls Logo" className="h-10 w-auto" />
                 <span className="font-montserrat font-bold text-2xl ml-3 text-[#ffd700]">
                   GVS Controls
                 </span>
