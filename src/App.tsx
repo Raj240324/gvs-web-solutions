@@ -1,13 +1,12 @@
-
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster as SonnerToaster } from "@/components/ui/sonner"; // Renamed to avoid confusion
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import CookieConsent from 'react-cookie-consent';
+import CookieConsent from "react-cookie-consent";
 
-// Pages
+// Pages (verify these files exist in src/pages)
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -22,7 +21,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CookiePolicy from "./pages/CookiePolicy";
 
-// Components
+// Components (verify these files exist in src/components)
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import BackToTop from "./components/BackToTop";
@@ -45,26 +44,32 @@ const App = () => {
   // Initialize AOS-like animations on page load
   useEffect(() => {
     if (!isLoading) {
-      // Initialize AOS-like animations
-      const handleScroll = () => {
+      // Debounce scroll handler to optimize performance
+      const debounce = (func, wait) => {
+        let timeout;
+        return (...args) => {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func(...args), wait);
+        };
+      };
+
+      const handleScroll = debounce(() => {
         const elements = document.querySelectorAll('.aos-fade-up, .aos-fade-in, .aos-fade-right, .aos-fade-left');
-        
-        elements.forEach(element => {
+        elements.forEach((element) => {
           const rect = element.getBoundingClientRect();
           const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-          
           if (rect.top <= windowHeight * 0.75) {
             element.classList.add('aos-animate');
           }
         });
-      };
+      }, 50);
 
       // Initial check
       setTimeout(handleScroll, 100);
-      
+
       // Add scroll event listener
-      window.addEventListener('scroll', handleScroll);
-      
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
       // Cleanup
       return () => window.removeEventListener('scroll', handleScroll);
     }
@@ -74,7 +79,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
-        <Sonner />
+        <SonnerToaster />
         {isLoading ? (
           <Preloader />
         ) : (
@@ -92,7 +97,7 @@ const App = () => {
                 fontFamily: 'Montserrat, sans-serif',
                 padding: '1rem',
                 borderTop: '2px solid #2a9d8f',
-                zIndex: 1000, // Above header (z-20) and content (z-10)
+                zIndex: 1000,
               }}
               buttonStyle={{
                 background: '#2a9d8f',
@@ -112,11 +117,9 @@ const App = () => {
               }}
               enableDeclineButton
               onAccept={() => {
-                // Enable analytics/marketing cookies (e.g., Google Analytics)
                 console.log('Cookies accepted');
               }}
               onDecline={() => {
-                // Disable non-essential cookies
                 console.log('Non-essential cookies rejected');
               }}
             >
