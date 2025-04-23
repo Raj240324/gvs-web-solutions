@@ -204,7 +204,7 @@
 
 /* Back to top button */
 .back-to-top {
-  @apply fixed bottom-5 right-5 w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-r from-gvs-green to-gvs-blue text-white shadow-md opacity-0 transition-all z-50 hover:scale-110 hover:shadow-lg;
+  @apply fixed bottom-5 left-5 w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-r from-gvs-green to-gvs-blue text-white shadow-md opacity-0 transition-all z-40 hover:scale-110 hover:shadow-lg;
 }
 
 .back-to-top.visible {
@@ -602,3 +602,26 @@ img {
   transition: transform 0.1s ease-out;
 }
 
+/* Grid pattern for background (optional: create a grid-pattern.png or use CSS) */
+.bg-grid {
+  background-image: url('/assets/grid-pattern.png');
+  background-size: 40px 40px;
+  background-repeat: repeat;
+}
+
+/* Pulse animation for buttons */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(6, 182, 212, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse 2s infinite;
+}

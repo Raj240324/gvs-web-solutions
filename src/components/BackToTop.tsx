@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ChevronUp } from 'lucide-react';
 
@@ -14,12 +13,11 @@ const BackToTop = () => {
     }
   };
 
-  // Set the top coordinate to 0
-  // Make scrolling smooth
+  // Scroll to top with smooth behavior
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   };
 

@@ -170,9 +170,7 @@ const WhyUs = () => {
                 title={advantage.title}
                 progress={advantage.progress}
                 dueDate={advantage.dueDate}
-                contributors={advantage.contributors}
                 tasks={advantage.tasks}
-                className="w-full"
               />
             ))}
           </div>
