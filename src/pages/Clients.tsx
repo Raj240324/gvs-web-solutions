@@ -163,66 +163,98 @@ const Clients = () => {
             ))}
           </div>
 
-          <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {[
-              { value: '50+', label: 'Satisfied Clients' },
-              { value: '10+', label: 'Industries Served' },
-              { value: '95%', label: 'Retention Rate' },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className="p-6 bg-gradient-to-br from-gray-800/95 to-gray-900/95 rounded-xl border border-teal-500/20 hover:border-teal-500/40 transition-all duration-300 animate-[slideIn_0.6s_ease-out] hover:animate-[float_2s_ease-in-out_infinite]"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <div className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-purple-400 mb-3 animate-[glow_2s_ease-in-out_infinite]">
-                  {stat.value}
-                </div>
-                <p className="text-gray-200 font-medium text-base">{stat.label}</p>
-              </div>
-            ))}
-          </div>
+          <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-6 relative">
+  {[
+    { value: '50+', label: 'Satisfied Clients', icon: '👥' },
+    { value: '10+', label: 'Industries Served', icon: '🏭' },
+    { value: '95%', label: 'Retention Rate', icon: '🔄' },
+  ].map((stat, index) => (
+    <div
+      key={index}
+      className="relative group bg-gradient-to-br from-teal-900/90 to-purple-900/90 rounded-2xl p-6 overflow-hidden border border-teal-400/40 hover:border-teal-400/70 transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-105 animate-[slideIn_0.6s_ease-out]"
+      style={{ animationDelay: `${index * 200}ms` }}
+    >
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%,_rgba(45,212,191,0.2)_0,_transparent_70%)] opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
+      
+      {/* Decorative Corner Element */}
+      <div className="absolute top-2 right-2 w-3 h-3 bg-teal-400 rounded-full group-hover:bg-purple-400 transition-colors duration-300 animate-pulse"></div>
+      
+      <div className="relative z-10 text-center">
+        {/* Icon */}
+        <div className="text-3xl mb-3 animate-[bounce_2s_ease-in-out_infinite] group-hover:scale-110 transition-transform duration-300">
+          {stat.icon}
+        </div>
+        
+        {/* Stat Value */}
+        <div className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-purple-400 mb-2 group-hover:from-teal-300 group-hover:to-purple-300 transition-all duration-300">
+          {stat.value}
+        </div>
+        
+        {/* Stat Label */}
+        <p className="text-white font-semibold text-base tracking-wide">{stat.label}</p>
+      </div>
+      
+      {/* Hover Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-teal-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
+      {/* Bottom Border Accent */}
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"></div>
+    </div>
+  ))}
+</div>
         </div>
       </section>
 
       {/* Updated Consultants Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-gray-100">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-12 md:mb-16 animate-on-scroll" data-animation="fade-in-down">
-            <span className="inline-block px-4 py-1 sm:px-4 sm:py-2 bg-teal-500/20 text-teal-700 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">Collaborations</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-3 sm:mb-4">
-              Consultant <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-purple-500">Partners</span>
-            </h2>
-            <p className="text-gray-600 max-w-lg mx-auto text-sm sm:text-base md:text-lg font-light">Uniting with top-tier consultancies for excellence.</p>
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-100 to-teal-100/50">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-10 sm:mb-12 md:mb-16 animate-on-scroll" data-animation="fade-in-down">
+      <span className="inline-block px-4 py-1 sm:px-4 sm:py-2 bg-teal-500/20 text-teal-700 rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4">Collaborations</span>
+      <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-3 sm:mb-4">
+        Consultant <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-purple-500">Partners</span>
+      </h2>
+      <p className="text-gray-600 max-w-lg mx-auto text-sm sm:text-base md:text-lg font-light">Uniting with top-tier consultancies for excellence.</p>
+    </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 py-6 sm:py-10">
+      {consultants.map((consultant, index) => (
+        <div
+          key={index}
+          className="relative group bg-gradient-to-br from-teal-800/90 to-purple-800/90 rounded-2xl p-6 overflow-hidden border border-teal-400/40 hover:border-teal-400/70 transition-all duration-500 shadow-lg hover:shadow-xl hover:scale-105 hover:rotate-1 animate-on-scroll"
+          data-animation="flip-in"
+          style={{ animationDelay: `${index * 200}ms` }}
+        >
+          {/* Background Pattern */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%,_rgba(45,212,191,0.2)_0,_transparent_70%)] opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
+          
+          {/* Decorative Corner Element */}
+          <div className="absolute top-2 right-2 w-3 h-3 bg-teal-400 rounded-full group-hover:bg-purple-400 transition-colors duration-300 animate-pulse"></div>
+          
+          <div className="relative z-10">
+            <div className="h-20 flex items-center justify-center mb-4 relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-400/30 to-purple-400/30 rounded-lg blur-md group-hover:blur-lg transition-all duration-300"></div>
+              <img
+                src={consultant.logo}
+                alt={`${consultant.name} logo`}
+                className="h-14 w-auto object-contain transition-all duration-500 group-hover:scale-110 bg-white/80 backdrop-blur-sm p-3 rounded-lg border border-teal-400/50 hover:border-teal-400/70 shadow-md hover:shadow-lg"
+              />
+              <div className="absolute w-20 h-20 border-2 border-teal-400/30 rounded-lg animate-[spin_8s_linear_infinite] group-hover:border-teal-400/50"></div>
+            </div>
+            <p className="text-center text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-purple-300 group-hover:from-teal-400 group-hover:to-purple-400 transition-all duration-300">
+              {consultant.name}
+            </p>
           </div>
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-8 py-6 sm:py-10">
-            {consultants.map((consultant, index) => (
-              <div
-                key={index}
-                className="relative bg-white rounded-xl p-4 sm:p-6 w-full max-w-xs sm:w-64 shadow-xl group overflow-hidden animate-on-scroll"
-                data-animation="flip-in"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-teal-400/30 to-purple-400/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="relative z-10 h-16 flex items-center justify-center mb-4">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-r from-teal-400/20 to-purple-400/20 rounded-lg blur-sm group-hover:blur-md transition-all duration-300"></div>
-                    <img
-                      src={consultant.logo}
-                      alt={`${consultant.name} logo`}
-                      className="h-12 w-auto object-contain transition-all duration-500 group-hover:scale-125 bg-white/80 backdrop-blur-sm p-2 rounded-lg border border-teal-300/50 hover:border-teal-400 shadow-md hover:shadow-lg"
-                    />
-                    <div className="absolute w-16 h-16 border-2 border-teal-300/30 rounded-lg animate-[spin_8s_linear_infinite] group-hover:border-teal-400/50"></div>
-                  </div>
-                </div>
-                <div className="relative z-10 text-center">
-                  <p className="text-base sm:text-lg font-semibold text-gray-800 group-hover:text-teal-700 transition-colors duration-300">{consultant.name}</p>
-                </div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-              </div>
-            ))}
-          </div>
+          
+          {/* Hover Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-teal-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          {/* Bottom Border Accent */}
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-teal-500 to-purple-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"></div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Testimonials Section */}
       <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-teal-50 via-indigo-50 to-purple-50">

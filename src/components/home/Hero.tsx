@@ -1,7 +1,9 @@
 import { ArrowRight, X, Mail, BookOpen, Phone } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import ImagesSlider from "../home/ImageSlider";
+import ContactModal from "../ContactModal";
 
 // Define types for content
 interface Content {
@@ -13,176 +15,12 @@ interface Content {
 
 // Placeholder images (replace with GVS CONTROLS-specific images if available)
 const images: string[] = [
-  "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1920&q=80", // Electrical panels
-  "https://images.unsplash.com/photo-1581091877018-4b6e1d1c1c7d?auto=format&fit=crop&w=1920&q=80", // Automation systems
-  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80", // Industrial setup
-  "https://images.unsplash.com/photo-1581091012184-7b7f7c1a1e7a?auto=format&fit=crop&w=1920&q=80", // Renewable energy
-  "https://images.unsplash.com/photo-1581092160607-36e2f7c0c7b2?auto=format&fit=crop&w=1920&q=80", // Power plant
+  "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1581091877018-4b6e1d1c1c7d?auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1581091012184-7b7f7c1a1e7a?auto=format&fit=crop&w=1920&q=80",
+  "https://images.unsplash.com/photo-1581092160607-36e2f7c0c7b2?auto=format&fit=crop&w=1920&q=80",
 ];
-
-const ContactFormModal: React.FC<{ isOpen: boolean; onClose: () => void }> = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState({ name: "", email: "", subject: "", message: "" });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
-
-  const validateForm = () => {
-    let isValid = true;
-    const newErrors = { name: "", email: "", subject: "", message: "" };
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
-      isValid = false;
-    }
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Invalid email address";
-      isValid = false;
-    }
-    if (!formData.subject.trim()) {
-      newErrors.subject = "Subject is required";
-      isValid = false;
-    }
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-      isValid = false;
-    }
-
-    setErrors(newErrors);
-    return isValid;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validateForm()) {
-      console.log("Form submitted:", formData);
-      alert("Inquiry submitted successfully!");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      onClose();
-    }
-  };
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-          onClick={onClose}
-        >
-          <motion.div
-            initial={{ scale: 0.8, y: 50 }}
-            animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.8, y: 50 }}
-            className="bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-2xl border border-white/20 w-full max-w-md mx-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-semibold text-white font-poppins">Contact Us</h3>
-              <button
-                onClick={onClose}
-                className="text-white hover:text-gray-300 focus:outline-none"
-                aria-label="Close modal"
-              >
-                <X size={24} />
-              </button>
-            </div>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-200">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="mt-1 w-full px-3 py-2 bg-white/5 border border-white/20 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  placeholder="Your name"
-                />
-                {errors.name && <p className="mt-1 text-sm text-red-400">{errors.name}</p>}
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-200">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="mt-1 w-full px-3 py-2 bg-white/5 border border-white/20 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  placeholder="Your email"
-                />
-                {errors.email && <p className="mt-1 text-sm text-red-400">{errors.email}</p>}
-              </div>
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-200">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className="mt-1 w-full px-3 py-2 bg-white/5 border border-white/20 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  placeholder="Inquiry subject"
-                />
-                {errors.subject && <p className="mt-1 text-sm text-red-400">{errors.subject}</p>}
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-200">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  className="mt-1 w-full px-3 py-2 bg-white/5 border border-white/20 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-500"
-                  placeholder="Your message"
-                />
-                {errors.message && <p className="mt-1 text-sm text-red-400">{errors.message}</p>}
-              </div>
-              <div className="flex justify-end gap-2">
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition-colors"
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-};
 
 const Hero: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -190,6 +28,7 @@ const Hero: React.FC = () => {
   const [expandedButton, setExpandedButton] = useState<string | null>(null);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [isHeroVisible, setIsHeroVisible] = useState<boolean>(true);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const contents: Content[] = [
     {
@@ -207,7 +46,7 @@ const Hero: React.FC = () => {
       images: [images[2], images[3]],
     },
     {
-      title: "Automation & Instrumentation",
+      title: "้นAutomation & Instrumentation",
       badge: "Smart Solutions",
       description:
         "Our process automation and instrumentation solutions optimize operations in chemical plants, water treatment, and automobile industries. From PLC control panels to field instruments, we deliver tailored automation systems.",
@@ -228,7 +67,6 @@ const Hero: React.FC = () => {
       setCurrentContent((prev) => (prev + 1) % contents.length);
     }, 8000);
 
-    // Scroll event listener to hide buttons when not in Hero section
     const handleScroll = () => {
       const heroSection = document.getElementById("hero-section");
       if (heroSection) {
@@ -238,7 +76,7 @@ const Hero: React.FC = () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
 
     return () => {
       clearTimeout(loadingTimeout);
@@ -252,12 +90,12 @@ const Hero: React.FC = () => {
   const buttons = [
     {
       id: "inquiry",
-      href: "/inquiry",
+      href: "/contact", // Update href to /contact
       icon: "Mail",
       color: "#f28e38",
       hoverColor: "#d67a30",
       text: "Send Inquiry",
-      action: () => setShowModal(true),
+      action: () => navigate("/contact"), // Navigate to /contact
     },
     {
       id: "catalogue",
@@ -300,7 +138,10 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="hero-section" className="relative min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-blue-900 to-teal-900 pt-24 lg:pt-32 overflow-hidden">
+    <section
+      id="hero-section"
+      className="relative min-h-screen flex flex-col bg-gradient-to-br from-gray-900 via-blue-900 to-teal-900 pt-24 lg:pt-32 overflow-hidden"
+    >
       {/* Background Animation */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -459,7 +300,7 @@ const Hero: React.FC = () => {
                         e.preventDefault();
                         button.action();
                       }}
-                      className="inline-flex items-center px-3 py-1 bg-white text-teal-600 font-semibold rounded/Alink rounded-md hover:bg-gray-100 transition-colors duration-300"
+                      className="inline-flex items-center px-3 py-1 bg-white text-teal-600 font-semibold rounded-md hover:bg-gray-100 transition-colors duration-300"
                     >
                       Proceed <ArrowRight className="ml-1 h-4 w-4" />
                     </motion.a>
@@ -471,8 +312,8 @@ const Hero: React.FC = () => {
         })}
       </div>
 
-      {/* Contact Form Modal */}
-      <ContactFormModal isOpen={showModal} onClose={() => setShowModal(false)} />
+      {/* Contact Modal with EmailJS (optional, can be removed if not needed) */}
+      <ContactModal open={showModal} onOpenChange={setShowModal} />
     </section>
   );
 };

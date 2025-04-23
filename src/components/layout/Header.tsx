@@ -33,7 +33,7 @@ const XIcon = ({ size = 20, className }) => (
 // Top Contact Navbar Component
 const TopContactBar = () => (
   <div className="hidden lg:block bg-white/10 dark:bg-black/20 backdrop-blur-md py-3 border-b border-white/20">
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center text-sm font-inter text-[#4a0e78] dark:text-white/90">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-sm font-inter text-[#4a0e78] dark:text-white/90">
       <div className="flex items-center gap-4">
         <span className="text-sm font-medium">Follow us:</span>
         <a
@@ -64,10 +64,12 @@ const TopContactBar = () => (
           <Instagram size={20} />
         </a>
       </div>
-      <div className="flex items-center gap-6">
-        <span className="text-sm font-medium text-white hidden xl:block">
+      <div className="flex-1 flex justify-center items-center">
+        <span className="text-sm font-medium text-[#4a0e78] dark:text-white/90 hidden xl:inline-block">
           Leading Electrical Control Panel Manufacturer
         </span>
+      </div>
+      <div className="flex items-center gap-6">
         <a
           href="mailto:gvscontrols@gmail.com"
           className="flex items-center gap-2 hover:text-[#ff6f61] transition-colors duration-300"
@@ -214,7 +216,7 @@ const Header = () => {
                     GVS Controls
                   </span>
                   <span className="text-[#ff6f61] text-sm font-medium">
-                    Engineering Solutions
+                    Our Vision To Your Solution
                   </span>
                 </div>
               </NavLink>

@@ -1,13 +1,15 @@
 import { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer'; // Ensure this is installed
+import { useInView } from 'react-intersection-observer';
+import { useNavigate } from 'react-router-dom';
 
 const Highlights = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
-    triggerOnce: true, // Animation triggers only once
-    threshold: 0.2, // Trigger when 20% of the section is visible
+    triggerOnce: true,
+    threshold: 0.2,
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (inView) {
@@ -70,32 +72,42 @@ const Highlights = () => {
       description: 'Project management consultancy (PMC), system design, engineering, and procurement assistance for turnkey projects.',
       image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
       gradient: 'from-blue-600 to-indigo-700',
+      serviceId: 'consultancy-engineering', // Maps to Services component ID
     },
     {
       title: 'Automation',
       description: 'Total automation and process control solutions with PLC and relay logic systems for optimal operational efficiency.',
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
       gradient: 'from-teal-600 to-cyan-700',
+      serviceId: 'automation-solutions', // Maps to Services component ID
     },
     {
       title: 'Product Manufacturing',
       description: 'Manufacture of electrical control panels adhering to IE standards, including MV Panels, PCC, MCC, and VFD Panels.',
       image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
       gradient: 'from-orange-600 to-red-700',
+      serviceId: 'panel-manufacturing', // Maps to Services component ID
     },
     {
       title: 'Erection & Commissioning',
       description: 'Installation, troubleshooting, and commissioning of electrical systems and panels for seamless operation.',
       image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
       gradient: 'from-gray-600 to-blue-700',
+      serviceId: 'installation-commissioning', // Maps to Services component ID
     },
     {
       title: 'Renovation & Revamping',
       description: 'Upgrading existing electrical systems to enhance safety, efficiency, and compliance with current standards.',
       image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
       gradient: 'from-purple-600 to-pink-700',
+      serviceId: 'renovation-revamping', // Maps to Services component ID
     },
   ];
+
+  // Handle card click to navigate to services page with hash
+  const handleCardClick = (serviceId) => {
+    navigate(`/services#${serviceId}`);
+  };
 
   return (
     <section className="relative py-16 md:py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden">
@@ -140,6 +152,7 @@ const Highlights = () => {
               key={index}
               variants={cardVariants}
               whileHover="hover"
+              onClick={() => handleCardClick(item.serviceId)} // Use serviceId for navigation
               className="relative group bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden cursor-pointer"
             >
               {/* Image with Gradient Overlay */}
@@ -148,7 +161,7 @@ const Highlights = () => {
                   src={item.image}
                   alt={item.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy" // Improve performance
+                  loading="lazy"
                 />
                 <div
                   className={`absolute inset-0 bg-gradient-to-t ${item.gradient} opacity-70 group-hover:opacity-80 transition-opacity duration-300`}
@@ -176,5 +189,4 @@ const Highlights = () => {
 };
 
 export default Highlights;
-
-export { Highlights }; // Ensure proper export
+export { Highlights };
