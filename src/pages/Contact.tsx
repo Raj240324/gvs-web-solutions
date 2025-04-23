@@ -1,3 +1,4 @@
+
 import { useEffect, useState, Component, ErrorInfo, ReactNode } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, Linkedin, Facebook, Twitter, Instagram } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
@@ -71,6 +72,18 @@ const Contact = () => {
   // Initialize EmailJS
   useEffect(() => {
     const userID = import.meta.env.VITE_EMAILJS_USER_ID;
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const customerTemplateID = import.meta.env.VITE_EMAILJS_CUSTOMER_TEMPLATE_ID;
+    const ownerTemplateID = import.meta.env.VITE_EMAILJS_OWNER_TEMPLATE_ID;
+
+    // Log environment variables for debugging
+    console.log('EmailJS Environment Variables:', {
+      userID,
+      serviceID,
+      customerTemplateID,
+      ownerTemplateID,
+    });
+
     if (!userID) {
       console.error('EmailJS userID is undefined. Please check your .env file for VITE_EMAILJS_USER_ID.');
       toast({
@@ -80,6 +93,7 @@ const Contact = () => {
       });
       return;
     }
+
     try {
       emailjs.init(userID);
       console.log('EmailJS initialized successfully with userID:', userID);
@@ -130,18 +144,19 @@ const Contact = () => {
       toast({ title: "Error", description: "Please fill all required fields.", variant: "destructive" });
       return;
     }
-    setIsSubmitting(true);
 
     const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const customerTemplateID = import.meta.env.VITE_EMAILJS_CUSTOMER_TEMPLATE_ID;
     const ownerTemplateID = import.meta.env.VITE_EMAILJS_OWNER_TEMPLATE_ID;
+    const userID = import.meta.env.VITE_EMAILJS_USER_ID;
 
-    if (!serviceID || !customerTemplateID || !ownerTemplateID) {
+    if (!serviceID || !customerTemplateID || !ownerTemplateID || !userID) {
       setIsSubmitting(false);
       console.error('EmailJS configuration is incomplete:', {
         serviceID,
         customerTemplateID,
         ownerTemplateID,
+        userID,
       });
       toast({
         title: "Configuration Error",
@@ -151,12 +166,7 @@ const Contact = () => {
       return;
     }
 
-    console.log('EmailJS Configuration:', {
-      serviceID,
-      customerTemplateID,
-      ownerTemplateID,
-      userID: import.meta.env.VITE_EMAILJS_USER_ID,
-    });
+    setIsSubmitting(true);
 
     const templateParams = {
       from_name: formData.name,
@@ -212,8 +222,7 @@ const Contact = () => {
       {Array.from({ length: 30 }).map((_, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-gradient-to-r from-teal-400/30 to-purple-500/30 blur```tsx
- blur-sm"
+          className="absolute rounded-full bg-gradient-to-r from-teal-400/30 to-purple-500/30 blur-sm"
           initial={{ scale: 0, opacity: 0.8 }}
           animate={{ scale: [0, 1.5, 0], opacity: [0.8, 0.3, 0] }}
           transition={{ duration: Math.random() * 5 + 5, repeat: Infinity, delay: Math.random() * 3 }}
