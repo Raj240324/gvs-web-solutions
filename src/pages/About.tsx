@@ -5,6 +5,15 @@ import { GlowingEffect } from '@/components/ui/glowing-effect';
 import { Timeline } from '@/components/ui/timeline';
 import { motion } from 'framer-motion';
 
+// Import images from src/assets
+import FoundedAbout from '@/assets/founded-about.jpg';
+import PowerPlants from '@/assets/power_plants.jpg';
+import RenewableEnergy from '@/assets/renewable_energy.jpg';
+import Automation from '@/assets/automation.jpg';
+import ClientsAbout from '@/assets/clients-about.jpg';
+import Mission from '@/assets/mission.jpg';
+import VisionNew from '@/assets/Vision-New.png';
+
 const About = () => {
   useEffect(() => {
     document.title = 'About GVS Controls - Our Journey and Expertise';
@@ -39,7 +48,7 @@ const About = () => {
         <div>
           <h3 className="text-xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600">Founded GVS Controls</h3>
           <p className="text-gray-600 mt-2">Established as a proprietary company with a vision for innovative, cost-effective engineering solutions.</p>
-          <img src="/assets/founded-about.jpg" alt="Founded GVS Controls" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
+          <img src={FoundedAbout} alt="Founded GVS Controls" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
         </div>
       ),
     },
@@ -49,7 +58,7 @@ const About = () => {
         <div>
           <h3 className="text-xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600">Early Projects</h3>
           <p className="text-gray-600 mt-2">Collaborated with Shriram EPC Ltd., Black Stone Group, and L&T on power plants and material handling systems.</p>
-          <img src="/assets/power_plants.jpg" alt="Early Projects" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
+          <img src={PowerPlants} alt="Early Projects" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
         </div>
       ),
     },
@@ -59,7 +68,7 @@ const About = () => {
         <div>
           <h3 className="text-xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600">Expansion</h3>
           <p className="text-gray-600 mt-2">Executed projects for SAIL, TISCO, and RINL in renewable energy and steel sectors.</p>
-          <img src="/assets/renewable_energy.jpg" alt="Expansion" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
+          <img src={RenewableEnergy} alt="Expansion" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
         </div>
       ),
     },
@@ -69,7 +78,7 @@ const About = () => {
         <div>
           <h3 className="text-xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600">Automation Leadership</h3>
           <p className="text-gray-600 mt-2">Introduced advanced PLC and VFD control systems for process plants.</p>
-          <img src="/assets/automation.jpg" alt="Automation Leadership" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
+          <img src={Automation} alt="Automation Leadership" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
         </div>
       ),
     },
@@ -79,7 +88,7 @@ const About = () => {
         <div>
           <h3 className="text-xl font-bold text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600">Global Reach</h3>
           <p className="text-gray-600 mt-2">Partnered with international clients like Titan Cement (Egypt) and Republic Cement (Philippines).</p>
-          <img src="/assets/clients-about.jpg" alt="Global Reach" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
+          <img src={ClientsAbout} alt="Global Reach" className="w-full h-40 object-cover rounded-xl shadow-md mt-4" />
         </div>
       ),
     },
@@ -239,8 +248,8 @@ const About = () => {
                 <div className="relative w-full max-w-[500px]">
                   <div className="border rounded-3xl bg-neutral-100 border-neutral-300 shadow-xl overflow-hidden ring-2 ring-teal-300/20">
                     <Compare
-                      firstImage="/assets/mission.jpg"
-                      secondImage="/assets/Vision-New.png"
+                      firstImage={Mission}
+                      secondImage={VisionNew}
                       firstImageClassName="object-cover w-full h-full"
                       secondImageClassname="object-cover w-full h-full"
                       className="w-full h-[250px] md:h-[400px] rounded-2xl"
