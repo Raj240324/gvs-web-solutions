@@ -133,7 +133,7 @@ const Gallery = () => {
     <main style={{ paddingTop: `${headerHeight}px` }} className="bg-gray-950 text-white">
       {/* Hero Section */}
       <section className="relative bg-[radial-gradient(circle_at_center,_#1e3a8a_0,_#0f172a_70%)] py-20 sm:py-24 md:py-28 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/assets/grid-pattern.png')] opacity-10"></div>
+      <div className="absolute inset-0 bg-gray-900 opacity-10"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
